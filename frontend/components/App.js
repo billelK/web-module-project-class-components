@@ -44,20 +44,18 @@ export default class App extends React.Component {
     this.setState({todoList: todos })
   }
 
-  hideCompleted () {
-    console.log("lell");
-    let filtered = [...this.state.todoList]
-    console.log(filtered);
-    // this.setState({todoList: filtered})
+  hideCompleted = () => {
+    // e.preventDefault()
+    this.setState({...this.state, showAll: !this.state.showAll})
   }
   render() {
     return (
       <div>
         <h2>Todos :</h2>
         <br/>
-        <TodoList todoList ={this.state.todoList} markAsDone={this.markAsDone} showAll={this.state.showAll}/>
+        <TodoList showAll={this.state.showAll} todoList ={this.state.todoList} markAsDone={this.markAsDone} showAll={this.state.showAll}/>
         <br/>
-        <Form hideCompleted={this.hideCompleted} submit= {this.onSubmit} inputVal ={this.state.inputVal} onChange={this.onChange}/>
+        <Form toggleShow={this.hideCompleted} showAll={this.state.showAll} submit= {this.onSubmit} inputVal ={this.state.inputVal} onChange={this.onChange}/>
       </div>
     )
   }
